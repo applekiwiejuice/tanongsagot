@@ -12,7 +12,7 @@
 ```
   Ruby 2.7.1
   Rails 6.0.3.4
-  Postgres 9.6
+  Postgres 10.4
   Node.js 10.20.1
   Yarn 1.22.4
 ```

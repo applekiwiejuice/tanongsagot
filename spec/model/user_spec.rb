@@ -71,8 +71,21 @@ RSpec.describe User, type: :model do
     expect(mixed_case_email.downcase).to eq(@user.reload.email)
   end
 
+  before(:each) do 
+    @another_user = User.new(name: 'Marla Singer', email: 'testicular@support.com')
+  end
+
   it 'is not valid without password' do
-    just_user = User.new(name: 'Marla Singer', email: 'testicular@support.com')
-    expect(just_user).to_not be_valid
+    expect(@another_user).to_not be_valid
+  end
+
+  it 'is not valid with blank password' do
+    @another_user.password = @another_user.password_confirmation = " " * 6
+    expect(@another_user).to_not be_valid
+  end
+
+  it 'is not valid with password length less than 8' do
+    @another_user.password = @another_user.password_confirmation = "a" * 7
+    expect(@another_user).to_not be_valid
   end
 end

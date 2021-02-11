@@ -56,12 +56,11 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # it 'is not valid with duplicate email' do 
-  #   @user = User.new(name: 'Tyler Durden', email: 'fight@club.com')
-  #   @user.save
-  #   duplicate_user = @user.dup
-  #   duplicate_user.email = @user.email.upcase
+  it 'is not valid with duplicate email' do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
     
-  #   expect(duplicate_user).to_not be_valid
-  # end
+    expect(duplicate_user).to_not be_valid
+  end
 end

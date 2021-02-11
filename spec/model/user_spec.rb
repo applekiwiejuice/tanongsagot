@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before(:each) do
     # @user = create(:user, name: 'Tyler Durden', email: 'fight@club.com')
-    @user = User.new(name: 'Tyler Durden', email: 'fight@club.com')
+    @user = User.new(name: 'Tyler Durden', email: 'fight@club.com',
+                     password: 'firstrule', password_confirmation: 'firstrule')
   end
 
   it 'is valid with valid attributes' do
@@ -58,9 +59,20 @@ RSpec.describe User, type: :model do
 
   it 'is not valid with duplicate email' do
     duplicate_user = @user.dup
-    duplicate_user.email = @user.email.upcase
     @user.save
     
     expect(duplicate_user).to_not be_valid
+  end
+
+  it 'is valid with lowercase email' do
+    mixed_case_email = "Foo@ExAMPle.CoM"
+    @user.email = mixed_case_email
+    @user.save
+    expect(mixed_case_email.downcase).to eq(@user.reload.email)
+  end
+
+  it 'is not valid without password' do
+    just_user = User.new(name: 'Marla Singer', email: 'testicular@support.com')
+    expect(just_user).to_not be_valid
   end
 end

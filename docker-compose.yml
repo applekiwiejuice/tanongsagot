@@ -6,9 +6,9 @@ services:
     ports:
       - "5432"
     volumes:
-      - starter_pack:/var/lib/postgresql/data
+      - tanongsagot:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: starter_pack_development
+      POSTGRES_DB: tanongsagot_development
       POSTGRES_USER: realm
       POSTGRES_PASSWORD: password
 
@@ -20,7 +20,7 @@ services:
       - "3035:3035"
     command: ./bin/webpack-dev-server
     volumes:
-      - .:/deploy/starter-pack
+      - .:/deploy/tanongsagot
       - bundler_gems:/usr/local/bundle
     environment:
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
@@ -34,7 +34,7 @@ services:
       - "3000:3000"
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
     volumes:
-      - .:/deploy/starter-pack
+      - .:/deploy/tanongsagot
       - bundler_gems:/usr/local/bundle
     depends_on:
       - postgres
@@ -47,4 +47,4 @@ services:
 
 volumes:
   bundler_gems:
-  starter_pack:
+  tanongsagot:

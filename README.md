@@ -10,7 +10,7 @@
 - TODO: work on creating a signup form
 
 
-## Setup
+## Configuration
 #### Version
 
 ```
@@ -21,19 +21,7 @@
   Yarn 1.22.4
 ```
 
-#### Installation
-
-```
-  $ git clone git@github.com:avionschool/rails-starter-pack.git
-  $ cd rails-starter-pack
-```
-
-#### Configuration
-
-- Copy `config/database.yml.sample` to `config/database.yml`
-
 #### Setup
-
 ```
   $ docker-compose run --rm web bundle install
   $ docker-compose run --rm web yarn install
